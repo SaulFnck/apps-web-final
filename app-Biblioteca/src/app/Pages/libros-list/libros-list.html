@@ -1,0 +1,45 @@
+
+<app-libros-form></app-libros-form>
+
+<!--Tabla-->
+<div>
+  <h2>Inventario de Libros</h2>
+  @if( cargando()){
+  <div>
+    <p>Cargando datos...</p>
+  </div>
+  } @if (!cargando() && libros().length > 0){
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Libro</th>
+          <th>Titulo</th>
+          <th>año de Lanzamiento</th>
+          <th>ISBN</th>
+          <th>Número de páginas</th>
+          <th>Stock</th>
+          <th>Sinopsis</th>
+          <th>Id del Autor</th>
+          <th>Id de la editorial</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(item of libros(); track item.idLibro){
+        <tr>
+          <td>{{ item.idLibro }}</td>
+          <td>{{ item.titulo }}</td>
+          <td>{{ item.anioLanzamiento }}</td>
+          <td>{{ item.ISBN }}</td>
+          <td>{{ item.numeroPaginas }}</td>
+          <td>{{ item.stock }}</td>
+          <td>{{ item.sinopsis }}</td>
+          <td>{{ item.idAutor }}</td>
+          <td>{{ item.idEditorial }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>

@@ -1,0 +1,38 @@
+<nav
+  class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
+  data-bs-theme="dark"
+>
+  <div class="container-fluid">
+    <i class="bi bi-book" style="color: white"></i>
+
+    <a class="navbar-brand" routerLink="/">Biblioteca</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <!-- Inicio -->
+        <a class="nav-link" routerLink="/" routerLinkActive="active"> Inicio </a>
+
+        <!-- Libros -->
+        <a class="nav-link" routerLink="/libros" routerLinkActive="active"> Libros </a>
+
+        <!-- Clientes -->
+        <a class="nav-link" routerLink="/clientes" routerLinkActive="active"> Clientes </a>
+
+        <!-- Rentas -->
+        <a class="nav-link" routerLink="/rentas" routerLinkActive="active"> Rentas </a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,126 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="formulario">
+  <!--Nombre-->
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Titulo</label>
+    <input
+      type="text"
+      class="form-control"
+      name="titulo"
+      aria-describedby="emailHelp"
+      required
+      #nombre="ngModel"
+      [(ngModel)]="model.titulo"
+    />
+  </div>
+
+  <!--Invitados-->
+  <div class="mb-3">
+    <label class="form-label">Año de Lanzamiento</label>
+    <input
+      type="number"
+      class="form-control"
+      name="anioLanzamiento"
+      min="1"
+      required
+      [(ngModel)]="model.anioLanzamiento"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">ISBN</label>
+    <input
+      type="number"
+      class="form-control"
+      name="ISBN"
+      min="1"
+      required
+      [(ngModel)]="model.ISBN"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Número de páginas</label>
+    <input
+      type="number"
+      class="form-control"
+      name="numeroPaginas"
+      min="1"
+      required
+      [(ngModel)]="model.numeroPaginas"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Stock</label>
+    <input
+      type="number"
+      class="form-control"
+      name="stock"
+      min="1"
+      required
+      [(ngModel)]="model.stock"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Sinopsis</label>
+    <input
+      type="text"
+      class="form-control"
+      name="sinopsis"
+      min="1"
+      required
+      [(ngModel)]="model.sinopsis"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Autor</label>
+    <input
+      type="number"
+      class="form-control"
+      name="idAutor"
+      min="1"
+      required
+      [(ngModel)]="model.idAutor"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Editorial</label>
+    <input
+      type="number"
+      class="form-control"
+      name="idEditorial"
+      min="1"
+      required
+      [(ngModel)]="model.idEditorial"
+      #invitados="ngModel"
+    />
+  </div>
+
+  <!--
+  <div class="campo opciones">
+    <label class="form-label">¿Asistirás al evento?</label>
+    <select
+      class="form-select ckecks"
+      name="confirma"
+      required
+      [(ngModel)]="model.confirma"
+      #confirma="ngModel"
+    >
+      <option value="">Selecciona...</option>
+      <option value="si">Sí, asistiré</option>
+      <option value="no">No podré asistir</option>
+    </select>
+  </div>
+  -->
+
+  <button type="submit" class="btn btn-success">Enviar</button>
+</form>
