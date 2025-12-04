@@ -1,33 +1,34 @@
-
 <app-libros-form></app-libros-form>
 
 <!--Tabla-->
 <div>
   <h2>Inventario de Libros</h2>
-  @if( cargando()){
+
+  @if (cargando()) {
   <div>
     <p>Cargando datos...</p>
   </div>
-  } @if (!cargando() && libros().length > 0){
-  <div>
-    <table>
-      <thead>
+  } @if (!cargando() && libros().length > 0) {
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
         <tr>
-          <th>ID Libro</th>
-          <th>Titulo</th>
-          <th>año de Lanzamiento</th>
-          <th>ISBN</th>
-          <th>Número de páginas</th>
-          <th>Stock</th>
-          <th>Sinopsis</th>
-          <th>Id del Autor</th>
-          <th>Id de la editorial</th>
+          <th scope="col">ID Libro</th>
+          <th scope="col">Título</th>
+          <th scope="col">Año de Lanzamiento</th>
+          <th scope="col">ISBN</th>
+          <th scope="col">Número de páginas</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Sinopsis</th>
+          <th scope="col">ID Autor</th>
+          <th scope="col">ID Editorial</th>
         </tr>
       </thead>
+
       <tbody>
-        @for(item of libros(); track item.idLibro){
+        @for (item of libros(); track item.idLibro) {
         <tr>
-          <td>{{ item.idLibro }}</td>
+          <th scope="row">{{ item.idLibro }}</th>
           <td>{{ item.titulo }}</td>
           <td>{{ item.anioLanzamiento }}</td>
           <td>{{ item.ISBN }}</td>
