@@ -1,4 +1,7 @@
-import { Component, OnInit, signal, viewChild } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { viewChild } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import { Libros } from '../../models/libros';
 import { LibrosService } from '../../services/libros/libros-service';
@@ -7,7 +10,7 @@ import { LibrosForm } from '../libros-form/libros-form';
 
 @Component({
   selector: 'app-libros-list',
-  imports: [LibrosForm],
+  imports: [LibrosForm, HttpClientModule, CommonModule],
   standalone: true,
   templateUrl: './libros-list.html',
   styleUrl: './libros-list.scss',
@@ -47,7 +50,6 @@ export class LibrosList implements OnInit {
 
   //Regargar tabla
   recargarTabla() {
-  this.loadLibros();
-}
-
+    this.loadLibros();
+  }
 }

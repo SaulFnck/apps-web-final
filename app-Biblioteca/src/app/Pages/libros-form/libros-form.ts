@@ -1,6 +1,10 @@
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+
+//Importar servicios autores y editoriales
+import { AutorService } from '../../services/autores/autor.service';
+import { EditorialService } from '../../services/editoriales/editorial.service';
 
 @Component({
   selector: 'app-libros-form',
@@ -9,9 +13,12 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './libros-form.html',
   styleUrl: './libros-form.scss',
 })
-export class LibrosForm {
-  //Funcion de salida para actualizar pagina
+export class LibrosForm implements OnInit {
+  // Para recargar la tabla
   @Output() onSave = new EventEmitter<void>();
+
+  autores: any[] = [];
+  editoriales: any[] = [];
 
   libroEnEdicion: boolean = false;
   idLibroEditar: number | null = null;
@@ -25,13 +32,40 @@ export class LibrosForm {
     stock: 0,
     sinopsis: '',
     idAutor: 0,
-    idEditorial: '',
+    idEditorial: 0,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private autorService: AutorService,
+    private editorialService: EditorialService
+  ) {}
+
+  ngOnInit() {
+    this.cargarAutores();
+    this.cargarEditoriales();
+  }
+
+  cargarAutores() {
+    this.autorService.getAutores().subscribe({
+      next: (res) => (this.autores = res),
+      error: () => alert('Error al cargar autores'),
+    });
+  }
+
+  cargarEditoriales() {
+    this.editorialService.getEditoriales().subscribe({
+      next: (res) => (this.editoriales = res),
+      error: () => alert('Error al cargar editoriales'),
+    });
+  }
 
   onSubmit(form: NgForm) {
     if (form.invalid) return;
+
+    // Forzar que idAutor e idEditorial sean números
+    this.model.idAutor = Number(this.model.idAutor);
+    this.model.idEditorial = Number(this.model.idEditorial);
 
     if (this.libroEnEdicion && this.idLibroEditar !== null) {
       // UPDATE
@@ -40,26 +74,20 @@ export class LibrosForm {
         .subscribe({
           next: () => {
             alert('Libro actualizado correctamente');
-
-            this.onSave.emit();
             this.resetForm(form);
+            this.onSave.emit();
           },
-          error: () => {
-            alert('Error al actualizar');
-          },
+          error: () => alert('Error al actualizar'),
         });
     } else {
-      // INSERT (POST)
-      this.http.post('http://localhost:3000/saveLibro', this.model).subscribe({
+      // INSERT
+      this.http.post(`http://localhost:3000/saveLibro`, this.model).subscribe({
         next: () => {
           alert('Libro insertado correctamente');
-
-          this.onSave.emit();
           this.resetForm(form);
+          this.onSave.emit();
         },
-        error: () => {
-          alert('Error al insertar');
-        },
+        error: () => alert('Error al insertar'),
       });
     }
   }
@@ -77,7 +105,7 @@ export class LibrosForm {
       stock: 0,
       sinopsis: '',
       idAutor: 0,
-      idEditorial: '',
+      idEditorial: 0,
     };
 
     form.resetForm();

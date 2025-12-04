@@ -30,20 +30,6 @@ app.get("/getAllLibros", (req, res) => {
   });
 });
 
-app.get("/getAllLibros", (req, res) => {
-  const sql = `SELECT * FROM Libros`;
-
-  connection.query(sql, (err, result) => {
-    if (err) {
-      return res
-        .status(500)
-        .json({ message: "Error al traer datos de libros" });
-    }
-
-    res.status(200).json(result);
-  });
-});
-
 app.post("/saveLibro", (req, res) => {
   console.log("Datos Recibidos desde Angular:", req.body);
 
@@ -84,5 +70,29 @@ app.put("/updateLibro/:id", (req, res) => {
     res.status(200).json({
       message: "Libro actualizado correctamente",
     });
+  });
+});
+
+// Obtener autores
+app.get("/autores", (req, res) => {
+  const sql = "SELECT * FROM Autores";
+
+  connection.query(sql, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Error al traer autores" });
+    }
+    res.status(200).json(result);
+  });
+});
+
+// Obtener editoriales
+app.get("/editoriales", (req, res) => {
+  const sql = "SELECT * FROM Editoriales";
+
+  connection.query(sql, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Error al traer editoriales" });
+    }
+    res.status(200).json(result);
   });
 });
