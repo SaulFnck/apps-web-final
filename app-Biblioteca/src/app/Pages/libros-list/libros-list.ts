@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, viewChild } from '@angular/core';
 
 import { Libros } from '../../models/libros';
 import { LibrosService } from '../../services/libros/libros-service';
@@ -13,6 +13,7 @@ import { LibrosForm } from '../libros-form/libros-form';
   styleUrl: './libros-list.scss',
 })
 export class LibrosList implements OnInit {
+  formComponent = viewChild(LibrosForm); //Hacer update
   //Variables de estado
   libros = signal<Libros[]>([]);
   cargando = signal<boolean>(true);
@@ -37,5 +38,10 @@ export class LibrosList implements OnInit {
 
   ngOnInit(): void {
     this.loadLibros();
+  }
+
+  editarLibro(libro: Libros) {
+    this.formComponent()?.cargarLibro(libro);
+    console.log('Libro a editar:', libro);
   }
 }
