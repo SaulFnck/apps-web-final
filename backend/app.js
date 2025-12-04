@@ -67,18 +67,22 @@ app.post("/saveLibro", (req, res) => {
   });
 });
 
-/*
-app.post("/saveLibro", (req, res) => {
-
-  
-
-
-  console.log("Datos Recibidos desde Angular");
+app.put("/updateLibro/:id", (req, res) => {
+  const id = req.params.id;
   const data = req.body;
 
-  res.status(200).json({
-    message: "Confirmación recibida correctamente",
-    received: data,
+  const sql = "UPDATE Libros SET ? WHERE idLibro = ?";
+
+  connection.query(sql, [data, id], (err, result) => {
+    if (err) {
+      console.error("Error al actualizar libro:", err);
+      return res
+        .status(500)
+        .json({ message: "Error al actualizar libro", error: err });
+    }
+
+    res.status(200).json({
+      message: "Libro actualizado correctamente",
+    });
   });
 });
-*/
