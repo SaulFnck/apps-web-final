@@ -1,5 +1,5 @@
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,9 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './libros-form.scss',
 })
 export class LibrosForm {
+  //Funcion de salida para actualizar pagina
+  @Output() onSave = new EventEmitter<void>();
+
   libroEnEdicion: boolean = false;
   idLibroEditar: number | null = null;
 
@@ -25,8 +28,6 @@ export class LibrosForm {
     idEditorial: '',
   };
 
-  private apiUrl = 'http://localhost:3000/saveLibro';
-
   constructor(private http: HttpClient) {}
 
   onSubmit(form: NgForm) {
@@ -39,6 +40,8 @@ export class LibrosForm {
         .subscribe({
           next: () => {
             alert('Libro actualizado correctamente');
+
+            this.onSave.emit();
             this.resetForm(form);
           },
           error: () => {
@@ -50,6 +53,8 @@ export class LibrosForm {
       this.http.post('http://localhost:3000/saveLibro', this.model).subscribe({
         next: () => {
           alert('Libro insertado correctamente');
+
+          this.onSave.emit();
           this.resetForm(form);
         },
         error: () => {
