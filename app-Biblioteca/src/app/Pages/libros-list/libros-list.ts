@@ -44,4 +44,10 @@ export class LibrosList implements OnInit {
     this.formComponent()?.cargarLibro(libro);
     console.log('Libro a editar:', libro);
   }
+
+  //Regargar tabla
+  recargarTabla() {
+  this.loadLibros();
+}
+
 }
