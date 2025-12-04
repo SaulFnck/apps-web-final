@@ -22,6 +22,7 @@
           <th scope="col">Sinopsis</th>
           <th scope="col">ID Autor</th>
           <th scope="col">ID Editorial</th>
+          <th scope="col">Update</th>
         </tr>
       </thead>
 
@@ -37,6 +38,9 @@
           <td>{{ item.sinopsis }}</td>
           <td>{{ item.idAutor }}</td>
           <td>{{ item.idEditorial }}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="editarLibro(item)">Update</button>
+          </td>
         </tr>
         }
       </tbody>
