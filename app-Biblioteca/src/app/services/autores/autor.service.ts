@@ -13,3 +13,26 @@ export class AutorService {
     return this.http.get<any[]>(this.apiUrl);
   }
 }
+
+/*
+private loadLibros() {
+    this.cargando.set(true);
+
+    this.librosService.getAllLibros().subscribe({
+      next: (data) => {
+        this.libros.set(data);
+        this.cargando.set(false);
+        console.log(this.libros);
+      },
+      error: (err) => {
+        console.log('Error al cargar los datos.', err);
+        this.libros.set([]);
+        this.cargando.set(false);
+      },
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadLibros();
+  }
+ */
