@@ -1,1 +1,44 @@
-<p>rentas-form works!</p>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="formulario">
+  
+  <div class="mb-3">
+    <label class="form-label">Cliente:</label>
+    <select class="form-select" name="idCliente" [(ngModel)]="model.idCliente" required>
+      <option [ngValue]="0" disabled>Seleccione un cliente</option>
+      <option *ngFor="let cliente of clientes" [ngValue]="cliente.idCliente">
+        {{ cliente.nombre }} {{ cliente.apellido }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Libro:</label>
+    <select class="form-select" name="idLibro" [(ngModel)]="model.idLibro" required>
+      <option [ngValue]="0" disabled>Seleccione un libro</option>
+      <option *ngFor="let libro of libros" [ngValue]="libro.idLibro">
+        {{ libro.titulo }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Fecha Renta</label>
+    <input type="date" class="form-control" name="fechaRenta" required [(ngModel)]="model.fechaRenta" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Fecha Estimada Devolución</label>
+    <input type="date" class="form-control" name="fechaEstimadaDevolucion" required [(ngModel)]="model.fechaEstimadaDevolucion" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Fecha Real Devolución</label>
+    <input type="date" class="form-control" name="fechaRealDevolucion" [(ngModel)]="model.fechaRealDevolucion" />
+  </div>
+
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" name="estado" [(ngModel)]="model.estado" id="estadoCheck">
+    <label class="form-check-label" for="estadoCheck">Activo (No devuelto)</label>
+  </div>
+
+  <button type="submit" class="btn btn-success">Guardar Renta</button>
+</form>

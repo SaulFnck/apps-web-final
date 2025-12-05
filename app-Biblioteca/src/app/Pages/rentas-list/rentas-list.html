@@ -1,2 +1,52 @@
-<p>rentas-list works!</p>
-<app-rentas-form></app-rentas-form>
+<app-rentas-form (onSave)="recargarTabla()"></app-rentas-form>
+
+<div>
+  <h2>Bitácora de Rentas</h2>
+
+  @if (cargando()) {
+  <div>
+    <p>Cargando datos...</p>
+  </div>
+  } @if (!cargando()) {
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">ID Cliente</th>
+          <th scope="col">ID Libro</th>
+          <th scope="col">Fecha Renta</th>
+          <th scope="col">Fecha Est. Dev.</th>
+          <th scope="col">Fecha Real Dev.</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of rentas(); track item.idRenta) {
+        <tr>
+          <th scope="row">{{ item.idRenta }}</th>
+          <td>{{ item.idCliente }}</td>
+          <td>{{ item.idLibro }}</td>
+          <td>{{ item.fechaRenta | date:'shortDate' }}</td>
+          <td>{{ item.fechaEstimadaDevolucion | date:'shortDate' }}</td>
+          <td>{{ item.fechaRealDevolucion | date:'shortDate' }}</td>
+          <td>
+            <span [class]="item.estado ? 'badge bg-danger' : 'badge bg-success'">
+              {{ item.estado ? 'No Devuelto' : 'Devuelto' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-warning btn-sm" (click)="editarRenta(item)">Update</button>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarRenta(item)">Delete</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
