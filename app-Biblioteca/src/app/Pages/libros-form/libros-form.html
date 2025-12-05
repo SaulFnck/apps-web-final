@@ -83,7 +83,7 @@
     <label>Autor:</label>
     <select name="idAutor" [(ngModel)]="model.idAutor" required>
       <option [ngValue]="null" disabled>Seleccione un autor</option>
-      <option *ngFor="let autor of autores" [value]="autor.idAutor">
+      <option *ngFor="let autor of autores" [ngValue]="autor.idAutor">
         {{ autor.nombre }}
       </option>
     </select>
@@ -93,7 +93,7 @@
     <label>Editorial:</label>
     <select name="idEditorial" [(ngModel)]="model.idEditorial" required>
       <option [ngValue]="null" disabled>Seleccione una editorial</option>
-      <option *ngFor="let editorial of editoriales" [value]="editorial.idEditorial">
+      <option *ngFor="let editorial of editoriales" [ngValue]="editorial.idEditorial">
         {{ editorial.nombre }}
       </option>
     </select>

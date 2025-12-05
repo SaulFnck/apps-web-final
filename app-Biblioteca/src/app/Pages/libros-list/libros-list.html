@@ -23,6 +23,9 @@
           <th scope="col">ID Autor</th>
           <th scope="col">ID Editorial</th>
           <th scope="col">Update</th>
+          <th scope="col">Delete</th>
+
+
         </tr>
       </thead>
 
@@ -40,6 +43,9 @@
           <td>{{ item.idEditorial }}</td>
           <td>
             <button class="btn btn-warning btn-sm" (click)="editarLibro(item)">Update</button>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarLibro(item)">Delete</button>
           </td>
         </tr>
         }

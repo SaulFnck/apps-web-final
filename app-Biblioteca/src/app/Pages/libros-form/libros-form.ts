@@ -6,9 +6,11 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { AutorService } from '../../services/autores/autor.service';
 import { EditorialService } from '../../services/editoriales/editorial.service';
 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-libros-form',
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
   standalone: true,
   templateUrl: './libros-form.html',
   styleUrl: './libros-form.scss',

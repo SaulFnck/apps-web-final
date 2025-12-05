@@ -13,4 +13,8 @@ export class LibrosService {
   getAllLibros(): Observable<Libros[]> {
     return this.http.get<Libros[]>(`${this.apiURL}/getAllLibros`);
   }
+
+  deleteLibro(id: number): Observable<any> {
+    return this.http.delete(`${this.apiURL}/deleteLibro/${id}`);
+  }
 }

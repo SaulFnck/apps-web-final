@@ -48,6 +48,21 @@ export class LibrosList implements OnInit {
     console.log('Libro a editar:', libro);
   }
 
+  eliminarLibro(libro: Libros) {
+    if (confirm('Seguro que quieres eliminar este libro?')) {
+      this.librosService.deleteLibro(libro.idLibro).subscribe({
+        next: () => {
+          alert('Libro eliminado correctamente');
+          this.loadLibros();
+        },
+        error: (err) => {
+          console.log('Error al eliminar el libro:', err);
+          alert('Error al eliminar el libro');
+        },
+      });
+    }
+  }
+
   //Regargar tabla
   recargarTabla() {
     this.loadLibros();
