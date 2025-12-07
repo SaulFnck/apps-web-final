@@ -1,56 +1,94 @@
-<app-libros-form (onSave)="recargarTabla()"></app-libros-form>
+<div class="table-header">
+  <h2 class="list-title">Inventario de Libros</h2>
+  <p>Catalogo de inventario de libros disponibles.</p>
+</div>
 
-<!--Tabla-->
-<div>
-  <h2>Inventario de Libros</h2>
+<div class="full-container">
+  <div class="add-btn">
+    <!--Botón añadir-->
+    <button
+      type="button"
+      class="btn btn-custom"
+      data-bs-toggle="modal"
+      data-bs-target="#formulario-libros"
+    >
+      + Añadir Libro
+    </button>
+  </div>
 
-  @if (cargando()) {
+  <!--Tabla-->
+
   <div>
-    <p>Cargando datos...</p>
+    @if (cargando()) {
+    <div>
+      <p>Cargando datos...</p>
+    </div>
+    } @if (!cargando() && libros().length > 0) {
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead class="custom-table">
+          <tr>
+            <th scope="col">ID Libro</th>
+            <th scope="col">Título</th>
+            <th scope="col">Año de Lanzamiento</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Número de páginas</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Sinopsis</th>
+            <th scope="col">ID Autor</th>
+            <th scope="col">ID Editorial</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (item of libros(); track item.idLibro) {
+          <tr>
+            <th scope="row">{{ item.idLibro }}</th>
+            <td>{{ item.titulo }}</td>
+            <td>{{ item.anioLanzamiento }}</td>
+            <td>{{ item.ISBN }}</td>
+            <td>{{ item.numeroPaginas }}</td>
+            <td>{{ item.stock }}</td>
+            <td>{{ item.sinopsis }}</td>
+            <td>{{ item.idAutor }}</td>
+            <td>{{ item.idEditorial }}</td>
+            <td>
+              <button
+                class="btn btn-custom btn-sm"
+                (click)="editarLibro(item)"
+                data-bs-toggle="modal"
+                data-bs-target="#formulario-libros"
+              >
+                Update
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="eliminarLibro(item)">Delete</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
   </div>
-  } @if (!cargando() && libros().length > 0) {
-  <div class="table-responsive">
-    <table class="table table-striped table-hover">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">ID Libro</th>
-          <th scope="col">Título</th>
-          <th scope="col">Año de Lanzamiento</th>
-          <th scope="col">ISBN</th>
-          <th scope="col">Número de páginas</th>
-          <th scope="col">Stock</th>
-          <th scope="col">Sinopsis</th>
-          <th scope="col">ID Autor</th>
-          <th scope="col">ID Editorial</th>
-          <th scope="col">Update</th>
-          <th scope="col">Delete</th>
 
-
-        </tr>
-      </thead>
-
-      <tbody>
-        @for (item of libros(); track item.idLibro) {
-        <tr>
-          <th scope="row">{{ item.idLibro }}</th>
-          <td>{{ item.titulo }}</td>
-          <td>{{ item.anioLanzamiento }}</td>
-          <td>{{ item.ISBN }}</td>
-          <td>{{ item.numeroPaginas }}</td>
-          <td>{{ item.stock }}</td>
-          <td>{{ item.sinopsis }}</td>
-          <td>{{ item.idAutor }}</td>
-          <td>{{ item.idEditorial }}</td>
-          <td>
-            <button class="btn btn-warning btn-sm" (click)="editarLibro(item)">Update</button>
-          </td>
-          <td>
-            <button class="btn btn-danger btn-sm" (click)="eliminarLibro(item)">Delete</button>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+  <!--Formulario-->
+  <div
+    class="modal fade"
+    id="formulario-libros"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-body">
+          <app-libros-form (onSave)="recargarTabla()"></app-libros-form>
+        </div>
+      </div>
+    </div>
   </div>
-  }
 </div>
