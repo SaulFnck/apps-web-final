@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="formulario">
-  
+  <h2 class="form-title">Formulario Rentas</h2>
   <div class="mb-3">
     <label class="form-label">Cliente:</label>
     <select class="form-select" name="idCliente" [(ngModel)]="model.idCliente" required>
@@ -22,23 +22,46 @@
 
   <div class="mb-3">
     <label class="form-label">Fecha Renta</label>
-    <input type="date" class="form-control" name="fechaRenta" required [(ngModel)]="model.fechaRenta" />
+    <input
+      type="date"
+      class="form-control"
+      name="fechaRenta"
+      required
+      [(ngModel)]="model.fechaRenta"
+    />
   </div>
 
   <div class="mb-3">
     <label class="form-label">Fecha Estimada Devolución</label>
-    <input type="date" class="form-control" name="fechaEstimadaDevolucion" required [(ngModel)]="model.fechaEstimadaDevolucion" />
+    <input
+      type="date"
+      class="form-control"
+      name="fechaEstimadaDevolucion"
+      required
+      [(ngModel)]="model.fechaEstimadaDevolucion"
+    />
   </div>
 
   <div class="mb-3">
     <label class="form-label">Fecha Real Devolución</label>
-    <input type="date" class="form-control" name="fechaRealDevolucion" [(ngModel)]="model.fechaRealDevolucion" />
+    <input
+      type="date"
+      class="form-control"
+      name="fechaRealDevolucion"
+      [(ngModel)]="model.fechaRealDevolucion"
+    />
   </div>
 
   <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" name="estado" [(ngModel)]="model.estado" id="estadoCheck">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      name="estado"
+      [(ngModel)]="model.estado"
+      id="estadoCheck"
+    />
     <label class="form-check-label" for="estadoCheck">Activo (No devuelto)</label>
   </div>
 
-  <button type="submit" class="btn btn-success">Guardar Renta</button>
+  <button type="submit" class="btn" data-bs-dismiss="modal">Guardar Renta</button>
 </form>
