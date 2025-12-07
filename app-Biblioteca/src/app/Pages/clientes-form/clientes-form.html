@@ -1,4 +1,6 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="formulario">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form">
+  <h2 class="form-title">Formulario Clientes</h2>
+
   <div class="mb-3">
     <label class="form-label">Nombre</label>
     <input type="text" class="form-control" name="nombre" required [(ngModel)]="model.nombre" />
@@ -21,13 +23,25 @@
 
   <div class="mb-3">
     <label class="form-label">Dirección</label>
-    <input type="text" class="form-control" name="direccion" required [(ngModel)]="model.direccion" />
+    <input
+      type="text"
+      class="form-control"
+      name="direccion"
+      required
+      [(ngModel)]="model.direccion"
+    />
   </div>
 
   <div class="mb-3">
     <label class="form-label">Fecha de Nacimiento</label>
-    <input type="date" class="form-control" name="fechaNacimiento" required [(ngModel)]="model.fechaNacimiento" />
+    <input
+      type="date"
+      class="form-control"
+      name="fechaNacimiento"
+      required
+      [(ngModel)]="model.fechaNacimiento"
+    />
   </div>
 
-  <button type="submit" class="btn btn-success">Enviar</button>
+  <button type="submit" class="btn" data-bs-dismiss="modal">Enviar</button>
 </form>
