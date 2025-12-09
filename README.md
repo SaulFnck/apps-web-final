@@ -2,9 +2,6 @@
 
 Proyecto final de la materia de aplicaciones web.
 
-esto es un nuevo cambio de prueba.
+El desarrollo del frontend se desarrollo en la carpeta de app-Biblioteca.
 
-este es otro cambio de main
-
-Este es un cambio en main otra vez
-Este es otro cambio de fixbug
+El desarrollo del backend se desarrollo en la carpte de backend
